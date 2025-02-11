@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/main.css">
+    <title>JS</title>
+</head>
+<body>
+    <header class="header">
+        <img src="./assets/logo/logo.png" alt="logo" class="logo">
+    </header>
+    
+    <main class="main">
+        <section class="input-with-button">
+            <img src="./assets/images/main-image.png" alt="main-image" class="main-image">
+            <div class="info">
+                <h1 class="title-of-info">Do you want to add new recept drink?</h1>
+                <div class="inputs">
+                    <input type="text" id="input-title" placeholder="Enter title" maxlength="10">
+                    <input type="text" id="input-description" placeholder="Enter description" maxlength="100">
+                    <input type="text" id="input-image-url" placeholder="Enter image url">
+                </div>
+                <div class="buttons">
+                    <button id="addButton">Add</button>
+                    <button id="clearButton">Clear</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="cards-section">
+            <div class="cards" id="cards">
+                
+            </div>
+        </section>
+    </main>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
