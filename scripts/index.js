@@ -4,90 +4,90 @@ const inputImage = document.getElementById("input-image-url")
 const addButton = document.getElementById("addButton")
 const clearButton = document.getElementById("clearButton")
 const cardsList = document.getElementById("cards")
+const cardTemplate = document.getElementById("card-temp").content
 
-let cardsArray = []
+let cardsArray = [
+    {
+        title: "Drink1",
+        desc: "Description"
+    },
+
+    {
+        title: "Drink2",
+        desc: "Description"
+    },
+
+    {
+        title: "Drink3",
+        desc: "Description"
+    },
+
+    {
+        title: "Drink4",
+        desc: "Description"
+    }
+]
+
+// choice random images
+const randomImages = [
+    "../assets/images/image1.png",
+    "../assets/images/image2.png",
+    "../assets/images/image3.png",
+    "../assets/images/image4.png"
+]
+
+function getRandomImage() {
+    return randomImages[Math.floor(Math.random() * 4)]
+}
+
+
+cardsArray.forEach((obj) => {
+    let cloneInitialCard = cardTemplate.cloneNode(true)
+
+    cloneInitialCard.querySelector(".img").src = getRandomImage()
+    cloneInitialCard.querySelector("h1").textContent = obj.title
+    cloneInitialCard.querySelector("h3").textContent = obj.desc
+
+    addEventListToCardButtons(cloneInitialCard)
+
+    cardsList.appendChild(cloneInitialCard)
+})
 
 function createCard() {
-    let card = {
-        title: inputTitle.value,
-        image: inputImage.value,
-        desc: inputDescription.value
-    }
+    let cloneCard = cardTemplate.cloneNode(true)
 
-    cardsArray.push(card)
-    addCardToHTML(card)
+    cloneCard.querySelector(".img").src = inputImage.value
+    cloneCard.querySelector("h1").textContent = inputTitle.value
+    cloneCard.querySelector("h3").textContent = inputDescription.value
+
+    addEventListToCardButtons(cloneCard)
+
+    if (inputImage.value != "" && inputTitle.value != "" && inputDescription.value) {
+        cardsList.appendChild(cloneCard)
+    } else {
+        alert("Inputs are empty!")
+    }
 
     inputTitle.value = ""
     inputDescription.value = ""
     inputImage.value = ""
 }
 
-function addCardToHTML(card) {
-    let newCard = document.createElement("div")
-    newCard.className = "card-item"
+function addEventListToCardButtons(cloneCard) {
+    const deleteButton = cloneCard.querySelector(".delete-button")
+    const likeButton = cloneCard.querySelector(".like-button")   
 
-    let img = document.createElement("img")
-    img.src = card.image
-
-    let title = document.createElement("h1")
-    title.textContent = card.title
-
-    let desc = document.createElement("h3")
-    desc.textContent = card.desc
-
-    let cardButtonsSection = document.createElement("div")
-    cardButtonsSection.className = "card-btns"
-
-    let deleteButton = document.createElement("button")
-    deleteButton.type = "button"
-    deleteButton.className = "delete-button"
     deleteButton.addEventListener("click", deleteCard)
-
-    let likeButton = document.createElement("button")
-    likeButton.type = "button"
-    likeButton.className = "like-button"
     likeButton.addEventListener("click", likeCard)
-
-
-    if (title.textContent !== "" && desc.textContent !== "") {
-        newCard.appendChild(img)
-        newCard.appendChild(title)
-        newCard.appendChild(desc)
-
-        cardButtonsSection.appendChild(deleteButton)
-        cardButtonsSection.appendChild(likeButton)
-
-        newCard.appendChild(cardButtonsSection)
-
-        cardsList.appendChild(newCard)
-    } else {
-        alert("Title, description or url is empty!")
-    }
 }
 
+
 function deleteCard(event) {
-    let btn = event.target
-    let card = btn.closest('.card-item')
-
-    console.log(card)
-
-    let index = cardsArray.findIndex(function(cardItem) {
-        return cardItem.title === card.querySelector("h1").textContent
-    })
-
-    console.log(index)
-
-    if (index !== -1) {
-        cardsArray.splice(index, 1)//delete card from array
-        card.remove()//delete card
-    } else {
-        console.log("Card not found")
-    }
+    event.target.closest(".card-item").remove()
 }
 
 function likeCard(event) {
-    let btn = event.target
-    btn.classList.toggle("like-button__active")
+    event.target.classList.toggle("like-button__active")
 }
 
 function clearCards() {

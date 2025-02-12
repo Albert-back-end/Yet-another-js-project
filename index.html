@@ -15,7 +15,7 @@
         <section class="input-with-button">
             <img src="./assets/images/main-image.png" alt="main-image" class="main-image">
             <div class="info">
-                <h1 class="title-of-info">Do you want to add new recept drink?</h1>
+                <h1 class="title-of-info">Do you want to add new recipe drink?</h1>
                 <div class="inputs">
                     <input type="text" id="input-title" placeholder="Enter title" maxlength="10">
                     <input type="text" id="input-description" placeholder="Enter description" maxlength="100">
@@ -29,11 +29,23 @@
         </section>
 
         <section class="cards-section">
-            <div class="cards" id="cards">
+            <div id="cards">
                 
             </div>
         </section>
     </main>
+
+    <template id="card-temp">
+        <div class="card-item">
+            <img src="" alt="img" class="img">
+            <h1 class="card-title"></h1>
+            <h3 class="card-desc"></h3>
+            <div class="card-btns">
+                <button class="delete-button" type="button"></button>
+                <button class="like-button" type="button"></button>
+            </div>
+        </div>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
