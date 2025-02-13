@@ -6,64 +6,50 @@ const clearButton = document.getElementById("clearButton")
 const cardsList = document.getElementById("cards")
 const cardTemplate = document.getElementById("card-temp").content
 
-let cardsArray = [
-    {
-        title: "Drink1",
-        desc: "Description"
-    },
+createAndAddDefaultCards()
 
-    {
-        title: "Drink2",
-        desc: "Description"
-    },
+function createAndAddDefaultCards() {
+    let cardsArray = [
+        {
+            title: "Drink1",
+            desc: "Description"
+        },
 
-    {
-        title: "Drink3",
-        desc: "Description"
-    },
+        {
+            title: "Drink2",
+            desc: "Description"
+        },
 
-    {
-        title: "Drink4",
-        desc: "Description"
-    }
-]
+        {
+            title: "Drink3",
+            desc: "Description"
+        },
 
-// choice random images
-const randomImages = [
-    "../assets/images/image1.png",
-    "../assets/images/image2.png",
-    "../assets/images/image3.png",
-    "../assets/images/image4.png"
-]
+        {
+            title: "Drink4",
+            desc: "Description"
+        }
+    ]
+
+    cardsArray.forEach((obj) => {
+        addEventListToCardButtons(obj)
+    })
+}
 
 function getRandomImage() {
+    const randomImages = [
+        "../assets/images/image1.png",
+        "../assets/images/image2.png",
+        "../assets/images/image3.png",
+        "../assets/images/image4.png"
+    ]
+
     return randomImages[Math.floor(Math.random() * 4)]
 }
 
-
-cardsArray.forEach((obj) => {
-    let cloneInitialCard = cardTemplate.cloneNode(true)
-
-    cloneInitialCard.querySelector(".img").src = getRandomImage()
-    cloneInitialCard.querySelector("h1").textContent = obj.title
-    cloneInitialCard.querySelector("h3").textContent = obj.desc
-
-    addEventListToCardButtons(cloneInitialCard)
-
-    cardsList.appendChild(cloneInitialCard)
-})
-
 function createCard() {
-    let cloneCard = cardTemplate.cloneNode(true)
-
-    cloneCard.querySelector(".img").src = inputImage.value
-    cloneCard.querySelector("h1").textContent = inputTitle.value
-    cloneCard.querySelector("h3").textContent = inputDescription.value
-
-    addEventListToCardButtons(cloneCard)
-
     if (inputImage.value != "" && inputTitle.value != "" && inputDescription.value) {
-        cardsList.appendChild(cloneCard)
+        addEventListToCardButtons()
     } else {
         alert("Inputs are empty!")
     }
@@ -73,12 +59,20 @@ function createCard() {
     inputImage.value = ""
 }
 
-function addEventListToCardButtons(cloneCard) {
+function addEventListToCardButtons(obj) {
+    let cloneCard = cardTemplate.cloneNode(true)
+
+    cloneCard.querySelector(".img").src = inputImage.value || getRandomImage()
+    cloneCard.querySelector("h1").textContent = inputTitle.value || obj.title
+    cloneCard.querySelector("h3").textContent = inputDescription.value || obj.desc
+
     const deleteButton = cloneCard.querySelector(".delete-button")
     const likeButton = cloneCard.querySelector(".like-button")   
 
     deleteButton.addEventListener("click", deleteCard)
     likeButton.addEventListener("click", likeCard)
+
+    cardsList.appendChild(cloneCard)
 }
 
 
