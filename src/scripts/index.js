@@ -1,15 +1,13 @@
-const inputTitle = document.getElementById("input-title")
-const inputDescription = document.getElementById("input-description")
-const inputImage = document.getElementById("input-image-url")
-const addButton = document.getElementById("addButton")
-const clearButton = document.getElementById("clearButton")
-const cardsList = document.getElementById("cards")
-const cardTemplate = document.getElementById("card-temp").content
+import { firstImage, secondImage, thirdmage, fourthImage, styles, mainImageSrc, logoSrc }  from "./imports.js"
+import { inputTitle, inputDescription, inputImage, addButton, clearButton, cardsList, cardTemplate, mainImage, logo } from "./domElements.js"
 
+let cardsArray = []
+
+setMainImages()
 createAndAddDefaultCards()
 
 function createAndAddDefaultCards() {
-    let cardsArray = [
+    cardsArray = [
         {
             title: "Drink1",
             desc: "Description"
@@ -38,13 +36,18 @@ function createAndAddDefaultCards() {
 
 function getRandomImage() {
     const randomImages = [
-        "../assets/images/image1.png",
-        "../assets/images/image2.png",
-        "../assets/images/image3.png",
-        "../assets/images/image4.png"
+        firstImage,
+        secondImage,
+        thirdmage,
+        fourthImage
     ]
 
     return randomImages[Math.floor(Math.random() * 4)]
+}
+
+function setMainImages() {
+    logo.src = logoSrc
+    mainImage.src = mainImageSrc
 }
 
 function createCard() {
@@ -86,7 +89,7 @@ function likeCard(event) {
 
 function clearCards() {
     cardsArray = []
-    cardsList.innerHTML = ""
+    cardsList.textContent = ""
 }
 
 addButton.addEventListener("click", createCard)

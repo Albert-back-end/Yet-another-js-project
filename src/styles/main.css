@@ -10,7 +10,7 @@ body {
     justify-content: center;
 }
 
-.logo {
+#logo {
     width: 100px;
     height: 100px;
 }
@@ -35,7 +35,7 @@ body {
     gap: 100px;
 }
 
-.main-image {
+#main-image {
     width: 30%;
     height: 80%;
 }
@@ -151,7 +151,7 @@ body {
     width: 70px;
     height: 70px;
     background-color: #d35757;
-    background-image: url("../assets/images/like-btn/delete.png");
+    background-image: url("/assets/images/like-btn/delete.png");
     border-radius: 20px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -161,7 +161,7 @@ body {
 .like-button {
     width: 70px;
     height: 70px;
-    background-image: url("../assets/images/like-btn//like.png");
+    background-image: url("/assets/images/like-btn//like.png");
     border-radius: 20px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -171,7 +171,7 @@ body {
 .like-button__active {
     width: 70px;
     height: 70px;
-    background-image: url("../assets/images/like-btn/dislike.png");
+    background-image: url("/assets/images/like-btn/dislike.png");
     border-radius: 20px;
     background-size: contain;
     background-repeat: no-repeat;
